@@ -1,0 +1,28 @@
+.entry-panel {
+    padding-top:30px;
+    position: relative;
+}
+
+.entry-panel .instructions {
+    font-size:1.25em;
+}
+
+.entry-panel .field {
+  position:relative;
+  min-height:70px;
+}
+
+.entry-panel .field .btn {
+  position:absolute;
+  z-index:2;
+}
+
+.entry-panel .input {
+    width:85%;
+    margin-left:7%;
+    z-index:1;
+}
+
+.entry-panel .input input {
+  width:100%;
+}

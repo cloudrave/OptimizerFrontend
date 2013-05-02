@@ -5,6 +5,19 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 
+from frontend.models import *
+
+def display_problems(request):
+    probs = Problem.objects.filter(is_visible=True)
+
+    extra_context = {
+        'problems' : probs,
+    }
+
+    return render_to_response("home.html",
+                              extra_context,
+                              context_instance=RequestContext(request))
+
 def display_problem_prompt(request, prob):
     prob = Problem.objects.get(url=prob)
 
