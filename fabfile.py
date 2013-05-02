@@ -2,8 +2,8 @@ from fabric.api import env, cd, require, local, sudo, put
 from fabric.contrib.project import rsync_project
 
 LOCAL_DIR = './'
-CODE_ROOT = '/var/www/edithtest'
-PROJ_FOLDER = 'assignment'
+CODE_ROOT = '/var/www/optimizer'
+PROJ_FOLDER = 'optimizer'
 
 def production(user):
     '''
@@ -61,7 +61,7 @@ def sync():
     '''
     require('code_root', provided_by=('production'))
 
-    rsync_project(env.code_root, LOCAL_DIR, delete=False, extra_opts="", exclude=('*.pyc', '*.git', '*.gitignore', 'local_settings.py', 'wsgi.py', '/env', PROJ_FOLDER + '/build'))
+    rsync_project(env.code_root, LOCAL_DIR, delete=True, extra_opts="", exclude=('*.pyc', '*.git', '*.gitignore', 'local_settings.py', 'wsgi.py', '/env', PROJ_FOLDER + '/build'))
 
 def touch():
     '''

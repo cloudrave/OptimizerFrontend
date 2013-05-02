@@ -13,13 +13,5 @@ class ProblemAdmin(admin.ModelAdmin):
         InputInline,
     ]
 
-class VariableInline(admin.StackedInline):
-    model = Variable
-
-class AlgorithmAdmin(admin.ModelAdmin):
-    inlines = [
-        VariableInline,
-    ]
-
 admin.site.register(Problem, ProblemAdmin)
-admin.site.register(Algorithm, AlgorithmAdmin)
+admin.site.register(Algorithm)
