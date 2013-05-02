@@ -56,7 +56,6 @@
         }
 
         var alg = $('.algs .btn.active').attr('name');
-        console.log(alg);
 
         if (!alg) {
             alert('error!');
@@ -65,8 +64,19 @@
 
         $("#thinking").fadeIn();
 
+        var inputs = new Array();
+        $('.entry-panel input').each(function() {
+            var $input = $(this);
+            var name = $input.attr('name');
+            var val = $input.val();
+            inputs[name] = val;
+        });
+        console.log(inputs);
+        inputs = _.extend({}, inputs);
+        console.log(inputs);
+
         // get JSON solution
-        $.post('/jsolve/{{problem.url}}/'+ alg + '/', function(data) {
+        $.get('/jsolve/{{problem.url}}/'+ alg + '/', inputs, function(data) {
             $('div#main-image-div').hide();
             $('#solution').fadeIn();
             $('#solution-text').text(data);
@@ -102,11 +112,11 @@
     <!--<div class='span4 offset1 my-progress' id='progress' style="position:relative; top:18px;">
       <div id="progress-outer">
         <div id="progress-inner"><span id='number'>10%</span></div>
-    </div>
-</div>-->
+      </div>
+    </div>-->
 
     {% for input in inputs %}
-        {% include "frontend/entry_field.html" with name=input.name filler=input.name %}
+        {% include "frontend/entry_field.html" %}
     {% endfor %}
 
     <div class='btn-group algs' data-toggle="buttons-radio">
@@ -116,21 +126,6 @@
     </div>
 
     <div><a href='#solution' class='btn btn-success btn-block btn-large btn-done' role='button' id='done'>Optimize!</a></div>
-
-    <!-- solution -->
-    <!--
-    <div id='solution' class='modal hide fade' style='/*position:absolute; top:0; background:white; z-index:3; width:100%; height:100%; border:solid black 1px; border-radius:5px; padding:12px*/'>
-      <div class='modal-header'><h3>Great!</h3></div>
-      <div class='modal-body'>
-        <span style='font-size:1.3em;'>We have a solution for you!</span><div style='float:right; font-size:1.4em;'>+32 points!</div>
-      </div>
-      <div class='modal-footer'>
-          <a class='btn' data-dismiss='modal' id='next'>Close</a>
-        <a href='/' class='btn btn-primary'>Try a different problem</a>
-      </div>
-    </div>
-    -->
-    <!-- /solution -->
 
   </div>
   <div class='span7'>

@@ -61,24 +61,29 @@ def display_solution(request, prob, alg):
 ### AJAX ###
 @csrf_exempt
 def solve(request, prob, alg):
-    data = request.POST
+    data = request.GET
 
     prob = Problem.objects.get(url=prob)
     alg = Algorithm.objects.get(url=alg)
 
     inputs = Input.objects.filter(problem=prob)
 
-    for input in inputs:
-        print "checking input: %s" % input
+        
 
-    sol = Solution(prob=prob)
-
-    #print "FRONTEND_ROOT: %s" % FRONTEND_ROOT
-
+    print "Inputs: %s" % str(inputs)
+    
     # specify problem and algorithm
     args = [prob.key,alg.key]
 
-    args += [1000]
+    # initialize inputs
+    for input in inputs:
+        print "checking input: %s" % input
+        order = str(input.order)
+        try:
+            input.value = data[order]
+        except:
+            return HttpResponse("Error: Not enough variables provided!")
+        args += [input.value]
 
     command = "java -jar %s/backend.jar" % FRONTEND_ROOT
     for arg in args:
