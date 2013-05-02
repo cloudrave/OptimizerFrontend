@@ -1,0 +1,23 @@
+{% extends "tasks/image_base.html" %}
+
+{% block title %}Tag that Butterfly!{% endblock %}
+
+{% block callout %}Tag that Butterfly!{% endblock %}
+
+
+{% block extra_image_head %}
+
+
+{% endblock %}
+
+{% block entry_panel %}
+
+{% include "tasks/entry_field.html" with name="Who is the collector?" filler="e.g. John Smith" %}
+
+{% include "tasks/entry_field.html" with name="What species is the butterfly?" filler="e.g. pelopidas lyelli" %}
+
+{% include "tasks/entry_field.html" with name="Where was the butterfly collected?" filler="e.g. Bangkok, Thailand" %}
+
+
+
+{% endblock %}

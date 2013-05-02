@@ -8,12 +8,13 @@ from django.views.decorators.cache import never_cache
 def display_problem_prompt(request, prob):
     prob = Problem.objects.get(url=prob)
 
-    algs = Algorithm.all()
+    algs = Algorithm.objects.filter(is_visible=True)
 
     extra_context = {
+        'problem' : prob,
     }
 
-    return render_to_response("problem.html",
+    return render_to_response("frontend/problem.html",
                               extra_context,
                               context_instance=RequestContext(request))
 
@@ -25,14 +26,22 @@ def display_solution(request, prob, alg):
     solution = solve(prob, alg)
 
     extra_context = {
+        'problem'  : prob,
+        'algorithm': alg,
         'solution' : solution,
     }
 
-    return render_to_response("problem.html",
+    return render_to_response("frontend/solution.html",
                               extra_context,
                               context_instance=RequestContext(request))
 
 
 ### INTERNAL ###
 def solve(prob, alg):
-    data = request.GET
+    sol = Solution(prob=prob)
+
+    sol.serialized_vars = "{}"
+
+    sol.save()
+
+    return sol

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %} | OPTIMIZE!</title>
+  <link rel="stylesheet" type='text/css' href="{{STATIC_URL}}css/bootstrap.min.css">
+  <link rel="stylesheet" type='text/css' href="{{STATIC_URL}}css/bootstrap-responsive.min.css">
+
+  <!-- override Twitter icons with Font Awesome icons -->
+  <link rel="stylesheet" type='text/css' href="{{STATIC_URL}}css/font-awesome.min.css">
+
+  <link rel="stylesheet" type='text/css' href="{{STATIC_URL}}css/buttons.css">
+  <link rel="stylesheet" type='text/css' href="{{STATIC_URL}}css/entry-panel.css">
+  <link rel="stylesheet" type='text/css' href="{{STATIC_URL}}css/progress.css">
+
+
+  <script type='text/javascript' src="{{STATIC_URL}}js/jquery.js"></script>
+  <!--<script type='text/javascript' src="{{STATIC_URL}}js/backbone.js"></script>-->
+  <script type='text/javascript' src="{{STATIC_URL}}js/underscore.js"></script>
+  <script type='text/javascript' src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+  <script type='text/javascript' src="{{STATIC_URL}}js/transit.min.js"></script>
+  <script type='text/javascript' src="{{STATIC_URL}}js/progress.js"></script>
+  <script type='text/javascript' src="{{STATIC_URL}}js/points.js"></script>
+
+
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  {% block extra_head %}
+  {% endblock %}
+</head>
+<body>
+  <!-- navbar -->
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li class="active">
+            <a class="brand" href="/">Play with Science</a>
+          </li>
+          <li><a href="#">More Games</a></li>
+        </ul>
+        <ul class='nav' style='float:right;'>
+          <li class='small-box' id='points'><a href='#'><span class='number'>38</span> points <i class='icon-user'></i></a></li>
+          <!--<li><a href="#">Profile <i class='icon-user'></i></a></li>-->
+          <li><a href="#">Sign Out <i class='icon-signout'></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div> <!-- /navbar -->
+
+  <div class='row' style='padding-top:50px'>
+  </div>
+
+  <div class='wrapper'>
+    <div class='container'>
+      {% block body %}
+      {% endblock %}
+    </div>
+  </div>
+
+</body>
+</html>
