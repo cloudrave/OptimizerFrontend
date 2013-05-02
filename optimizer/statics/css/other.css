@@ -13,3 +13,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 .modal-backdrop {
   /* Was going to always show points even with backdrop, but that will take too long. */
 }
+
+
+.problem {
+    height:200px;
+    width: 200px;
+    text-align:center;
+    border: 1px solid black;
+}
+
+.problem .name {
+    font-weight:bold;
+}
+
+.problem img {
+    max-width:180px;
+    max-height:180px;
+}
+
+.entry-panel .btn-group.algs {
+    width:100%;
+    text-align:center;
+    font-weight:bold !important;
+}
+
+.btn-group.algs button {
+    font-weight:bold !important;
+}
+

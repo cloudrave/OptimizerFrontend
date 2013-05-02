@@ -16,4 +16,9 @@ urlpatterns = patterns('',
 
     # solves problem e.g. /s/fence/pso/
     url(r'^s/(\w+)/(\w+)/$', 'frontend.views.display_solution'),
+
+    ### AJAX ###
+
+    # Returns JSON solution for problem.  e.g. /jsolve/fence/pso/
+    url(r'^jsolve/(\w+)/(\w+)/$', 'frontend.views.'),
 )

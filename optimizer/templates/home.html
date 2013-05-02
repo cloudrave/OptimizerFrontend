@@ -21,9 +21,13 @@
 
 <div class='row'>
     {% for prob in problems %}
-        <div class='problem span5'>
-            {{ prob.name }}
-        </div>
+        <a href='/p/{{prob.url}}/'>
+            <div class='span5 well problem'>
+                {{ prob.name }}
+                <div class='name'></div>
+                <img src="{{ prob.image.url }}" />
+            </div>
+        </a>
     {% endfor %}
 </div>
     

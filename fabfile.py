@@ -61,7 +61,7 @@ def sync():
     '''
     require('code_root', provided_by=('production'))
 
-    rsync_project(env.code_root, LOCAL_DIR, delete=True, extra_opts="", exclude=('*.pyc', '*.git', '*.gitignore', 'local_settings.py', 'wsgi.py', '/env', PROJ_FOLDER + '/build'))
+    rsync_project(env.code_root, LOCAL_DIR, delete=False, extra_opts="", exclude=('*.pyc', '*.git', '*.gitignore', 'local_settings.py', 'wsgi.py', '/env', PROJ_FOLDER + '/build'))
 
 def touch():
     '''
@@ -94,11 +94,14 @@ def collect_static():
 def restart_server():
     sudo('apachectl restart')
 
+def set_perms():
+    sudo('chmod 777 %s; chmod -R 777 %s/%s/media' % (env.code_root, env.code_root, PROJ_FOLDER))
+
 def deploy():
     sync()
     update_requirements()
     syncdb()
     migrate()
     collect_static()
-    #set_perms()
+    set_perms()
     restart_server()

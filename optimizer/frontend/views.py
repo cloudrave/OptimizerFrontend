@@ -5,6 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 
+import os
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 from frontend.models import *
 
 def display_problems(request):
@@ -20,11 +23,14 @@ def display_problems(request):
 
 def display_problem_prompt(request, prob):
     prob = Problem.objects.get(url=prob)
+    inputs = Input.objects.filter(problem=prob)
 
     algs = Algorithm.objects.filter(is_visible=True)
 
     extra_context = {
         'problem' : prob,
+        'inputs'  : inputs,
+        'algorithms': algs,
     }
 
     return render_to_response("frontend/problem.html",
@@ -49,11 +55,27 @@ def display_solution(request, prob, alg):
                               context_instance=RequestContext(request))
 
 
-### INTERNAL ###
-def solve(prob, alg):
+
+### AJAX ###
+def solve(request, prob, alg):
+    data = request.POST
+
+    prob = Problem.objects.get(url=prob)
+    alg = Algorithm.objects.get(url=alg)
+
+    inputs = Input.objects.filter(problem=prob)
+
+    for input in inputs:
+        print input
+
     sol = Solution(prob=prob)
 
-    sol.serialized_vars = "{}"
+    print "PROJECT_ROOT: %s" % PROJECT_ROOT
+    print os.system("/var/www/optimizer/backend.jar")
+    return
+    print os.system("/var/www/optimizer/backend.jar")
+    sol.text = os.system("/var/www/optimizer/backend.jar")
+    print sol.text
 
     sol.save()
 
