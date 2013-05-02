@@ -20,5 +20,5 @@ urlpatterns = patterns('',
     ### AJAX ###
 
     # Returns JSON solution for problem.  e.g. /jsolve/fence/pso/
-    url(r'^jsolve/(\w+)/(\w+)/$', 'frontend.views.'),
+    url(r'^jsolve/(\w+)/(\w+)/$', 'frontend.views.solve'),
 )

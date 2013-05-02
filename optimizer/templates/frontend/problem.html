@@ -55,18 +55,24 @@
             return;
         }
 
-        var alg = $('.algs .btn.active').attr('key');
+        var alg = $('.algs .btn.active').attr('name');
         console.log(alg);
 
         if (!alg) {
             alert('error!');
             return;
         }
-        $('div#main-image-div').hide();
-        $('#solution').fadeIn();
+
+        $("#thinking").fadeIn();
+
         // get JSON solution
         $.post('/jsolve/{{problem.url}}/'+ alg + '/', function(data) {
-            console.log(data);
+            $('div#main-image-div').hide();
+            $('#solution').fadeIn();
+            $('#solution-text').text(data);
+            $("#thinking").fadeOut();
+        }).error(function() {
+            $("#thinking").fadeOut();
         });
     });
 
@@ -105,7 +111,7 @@
 
     <div class='btn-group algs' data-toggle="buttons-radio">
         {% for alg in algorithms %}
-        <button class='btn' key="{{alg.key}}">{{alg.name}}</button>
+        <button class='btn' name="{{alg.url}}">{{alg.name}}</button>
         {% endfor %}
     </div>
 
@@ -134,9 +140,9 @@
     </div>
 
     <div id='solution' class='well' style='display:none'>
-      <div><h3>Great!</h3></div>
+        <div><h3>Solution! <span id='cute-solution-phrase'></span></h3></div>
       <div>
-        <span style='font-size:1.3em;'>We have a solution for you!</span><div style='float:right; font-size:1.4em;'>+32 points!</div>
+        <span style='font-size:1.3em;' id='solution-text'></span><div style='float:right; font-size:1.4em;'>+32 points!</div>
       </div>
       <div style='margin-top:20px; text-align:center;'>
         <a href='/' class='btn btn-primary'>Try a different problem!</a>
@@ -144,6 +150,9 @@
     </div>
 
   </div>
+
+  <div id='thinking' style='display:none;'>Optimization in progress!</div>
+
 </div>
     
 

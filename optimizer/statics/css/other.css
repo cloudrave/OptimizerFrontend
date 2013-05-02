@@ -34,10 +34,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 .entry-panel .btn-group.algs {
     width:100%;
     text-align:center;
-    font-weight:bold !important;
 }
 
 .btn-group.algs button {
     font-weight:bold !important;
+}
+
+#thinking {
+    
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    z-index:100000;
+
+    text-align:center;
+    font-size:4em;
+    color:white;
+
+    padding-top:30%;
+
 }
 

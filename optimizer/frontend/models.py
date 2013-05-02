@@ -31,6 +31,9 @@ class Input(models.Model):
     class Meta:
         ordering = ("order",)
 
+    def __unicode__(self):
+        return "%s" % self.name
+
 class Solution(models.Model):
     prob = models.ForeignKey(Problem)
 

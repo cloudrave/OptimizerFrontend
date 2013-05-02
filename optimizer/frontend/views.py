@@ -4,9 +4,11 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_exempt
+
 
 import os
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+FRONTEND_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)))
 
 from frontend.models import *
 
@@ -57,6 +59,7 @@ def display_solution(request, prob, alg):
 
 
 ### AJAX ###
+@csrf_exempt
 def solve(request, prob, alg):
     data = request.POST
 
@@ -66,17 +69,22 @@ def solve(request, prob, alg):
     inputs = Input.objects.filter(problem=prob)
 
     for input in inputs:
-        print input
+        print "checking input: %s" % input
 
     sol = Solution(prob=prob)
 
-    print "PROJECT_ROOT: %s" % PROJECT_ROOT
-    print os.system("/var/www/optimizer/backend.jar")
-    return
-    print os.system("/var/www/optimizer/backend.jar")
-    sol.text = os.system("/var/www/optimizer/backend.jar")
-    print sol.text
+    #print "FRONTEND_ROOT: %s" % FRONTEND_ROOT
 
-    sol.save()
+    # specify problem and algorithm
+    args = [prob.key,alg.key]
 
-    return sol
+    args += [1000]
+
+    command = "java -jar %s/backend.jar" % FRONTEND_ROOT
+    for arg in args:
+        command += " " + str(arg)
+
+    # run Java backend
+    response = os.popen(command)
+
+    return HttpResponse(response)
