@@ -3,3 +3,4 @@ mysql-python
 django-extensions
 Werkzeug
 south
+ajaxuploader

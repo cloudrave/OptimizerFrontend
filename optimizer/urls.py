@@ -4,21 +4,27 @@ from django.views.generic import TemplateView, RedirectView
 from django.contrib import admin
 admin.autodiscover()
 
+from frontend.views import *
+
 urlpatterns = patterns('',
     # enables admin
     url(r'^admin/', include(admin.site.urls)),
 
     # home page displays problems to solve
-    url(r'^$', 'frontend.views.display_problems'),
+    url(r'^$', display_problems),
 
     # displays problem prompts e.g. /p/fence/
-    url(r'^p/(\w+)/$', 'frontend.views.display_problem_prompt'),
+    url(r'^p/(\w+)/$', display_problem_prompt),
 
     # solves problem e.g. /s/fence/pso/
-    url(r'^s/(\w+)/(\w+)/$', 'frontend.views.display_solution'),
+    url(r'^s/(\w+)/(\w+)/$', display_solution),
 
     ### AJAX ###
 
     # Returns JSON solution for problem.  e.g. /jsolve/fence/pso/
-    url(r'^jsolve/(\w+)/(\w+)/$', 'frontend.views.solve'),
+    url(r'^jsolve/(\w+)/(\w+)/$', solve),
+
+    url(r'^start$', start, name='start'),
+    url(r'^ajax-upload$', import_uploader, name='my_ajax_upload'),
+
 )

@@ -6,7 +6,7 @@ from frontend.models import *
 
 class InputInline(admin.StackedInline):
     model = Input
-    fields = ('name', 'order', 'description')
+    fields = ('name', 'order', 'default_value', 'description')
 
 class FileInputInline(admin.StackedInline):
     model = FileInput
