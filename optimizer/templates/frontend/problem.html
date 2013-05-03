@@ -29,20 +29,6 @@
       $(this).slideUp(200);
     });
 
-    // update points
-    $('div.field input').keyup(function(e) {
-      if (e.keyCode == 8 /* delete key */) {
-        console.log(keystrokes);
-        keystrokes--;
-      } else {
-        keystrokes++;
-        if (keystrokes > 2) {
-          incrPoints(1);
-          keystrokes = 0;
-        }
-      }
-    });
-
     cuteSolPhrases = ['Solution!', 'Bam!', 'Sweet!', 'Rock that solution!']
 
     // click done
@@ -89,33 +75,25 @@
         });
     });
 
-    // click next
-    $('#next').click(function() {
-      //$('#feedback').slideUp(300);
-      var prog = $('#progress');
-      incrProgress(prog, 8);
-      incrPoints(32);
-      resetForm();
-    });
-
   });
 
 $(function(){
     var uploader = new qq.FileUploader({
         action: "{% url "my_ajax_upload" %}",
         element: $('#file-uploader')[0],
-        multiple: true,
+        multiple: false,
         onComplete: function(id, fileName, responseJSON) {
             if(responseJSON.success) {
-                //alert("success!");
+                console.log("success!");
             } else {
-                //alert("upload failed!");
+                console.log("upload failed!");
             }
         },
         onAllComplete: function(uploads) {
             // uploads is an array of maps
             // the maps look like this: {file: FileObject, response: JSONServerResponse}
-            //alert("All complete!");
+            console.log("All complete!");
+            console.log(uploads);
         },
         params: {
             'csrf_token': '{{ csrf_token }}',
