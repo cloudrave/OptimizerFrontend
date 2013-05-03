@@ -53,7 +53,7 @@
 
 
         var inputs = new Array();
-        $('.entry-panel input').each(function() {
+        $(".entry-panel input[type='text']").each(function() {
             var $input = $(this);
             var name = $input.attr('name');
             var val = $input.val();
@@ -67,7 +67,7 @@
         $.post('/jsolve/{{problem.url}}/'+ alg + '/', inputs, function(data) {
             $('div#main-image-div').hide();
             $('#solution').fadeIn();
-            $('#solution-text').text(data);
+            $('#solution-text').html(data);
             $("#thinking").fadeOut();
             $("#cute-solution-phrase").text(getRand(cuteSolPhrases));
         }).error(function() {
@@ -78,22 +78,54 @@
   });
 
 $(function(){
-    var uploader = new qq.FileUploader({
+    var csv1uploader = new qq.FileUploader({
         action: "{% url "my_ajax_upload" %}",
-        element: $('#file-uploader')[0],
+        element: $('#file-uploader1')[0],
         multiple: false,
         onComplete: function(id, fileName, responseJSON) {
             if(responseJSON.success) {
                 console.log("success!");
             } else {
-                console.log("upload failed!");
+                alert("upload failed!");
             }
         },
         onAllComplete: function(uploads) {
             // uploads is an array of maps
             // the maps look like this: {file: FileObject, response: JSONServerResponse}
             console.log("All complete!");
-            console.log(uploads);
+            var len = uploads.length;
+            var filename = uploads[len-1]['file'].name;
+            $.get('/updateFileInput/{{file_inputs.0.id}}/', {fname:filename}, function(data) {
+                console.log('updated file name');
+            }).error(function() {alert('oops');});
+        },
+        params: {
+            'csrf_token': '{{ csrf_token }}',
+            'csrf_name': 'csrfmiddlewaretoken',
+            'csrf_xname': 'X-CSRFToken',
+        },
+    });
+
+    var csv2uploader = new qq.FileUploader({
+        action: "{% url "my_ajax_upload" %}",
+        element: $('#file-uploader2')[0],
+        multiple: false,
+        onComplete: function(id, fileName, responseJSON) {
+            if(responseJSON.success) {
+                console.log("success!");
+            } else {
+                alert("upload failed!");
+            }
+        },
+        onAllComplete: function(uploads) {
+            // uploads is an array of maps
+            // the maps look like this: {file: FileObject, response: JSONServerResponse}
+            console.log("All complete!");
+            var len = uploads.length;
+            var filename = uploads[len-1]['file'].name;
+            $.get('/updateFileInput/{{file_inputs.1.id}}/', {fname:filename}, function(data) {
+                console.log('updated file name');
+            }).error(function() {alert('oops');});
         },
         params: {
             'csrf_token': '{{ csrf_token }}',
@@ -131,11 +163,12 @@ $(function(){
         {% include "frontend/entry_field.html" with name=input.name filler=input.name id=input.order %}
     {% endfor %}
 
-    {% for f_input in file_inputs %}
-        {% include "frontend/upload_field.html" with name=f_input.name filler=f_input.name id=f_input.order %}
-        <div id='file-uploader'>
-        </div>
-    {% endfor %}
+    {% if problem.key == 5 %}
+        Shift Requirements:
+        <div id='file-uploader1'></div>
+        Employee Preferences:
+        <div id='file-uploader2'></div>
+    {% endif %}
 
     <div class='' style='font-weight:bold;text-align:center; margin-bottom:5px;'>
         Which algorithm would you like to use?
@@ -158,10 +191,10 @@ $(function(){
         <img class='main-image img-rounded' src='{{problem.image.url}}' />
     </div>
 
-    <div id='solution' class='well' style='display:none'>
+    <div id='solution' class='well' style='display:none;'>
         <div><h3><span id='cute-solution-phrase'>Solution!</span></h3></div>
       <div>
-        <span style='font-size:1.3em;' id='solution-text'></span>
+        <div style='font-size:1.3em;' id='solution-text'></div>
       </div>
       <div style='margin-top:20px; text-align:center;'>
         <a href='/' class='btn btn-primary'>Try a different problem!</a>

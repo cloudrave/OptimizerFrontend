@@ -1,7 +1,7 @@
 from django.db import models
 
 class JarFile(models.Model):
-    file = models.FileField(upload_to='backend.jar')
+    file = models.FileField(upload_to='jarfile')
 
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

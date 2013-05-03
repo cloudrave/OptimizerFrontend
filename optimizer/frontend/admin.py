@@ -21,3 +21,5 @@ class ProblemAdmin(admin.ModelAdmin):
 
 admin.site.register(Problem, ProblemAdmin)
 admin.site.register(Algorithm)
+admin.site.register(FileInput)
+admin.site.register(JarFile)

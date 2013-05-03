@@ -16,9 +16,6 @@ urlpatterns = patterns('',
     # displays problem prompts e.g. /p/fence/
     url(r'^p/(\w+)/$', display_problem_prompt),
 
-    # solves problem e.g. /s/fence/pso/
-    url(r'^s/(\w+)/(\w+)/$', display_solution),
-
     ### AJAX ###
 
     # Returns JSON solution for problem.  e.g. /jsolve/fence/pso/
@@ -26,5 +23,8 @@ urlpatterns = patterns('',
 
     url(r'^start$', start, name='start'),
     url(r'^ajax-upload$', import_uploader, name='my_ajax_upload'),
+
+    url(r'^updateFileInput/(\d+)/$', update_file_input),
+   
 
 )

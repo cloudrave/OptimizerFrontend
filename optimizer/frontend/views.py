@@ -14,6 +14,7 @@ FRONTEND_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)))
 
 from frontend.models import *
 
+@csrf_exempt
 def start(request):
     csrf_token = get_token(request)
     return render_to_response('import.html', {'csrf_token': csrf_token},
@@ -50,24 +51,6 @@ def display_problem_prompt(request, prob):
                               extra_context,
                               context_instance=RequestContext(request))
 
-# Returns page with solution
-def display_solution(request, prob, alg):
-    prob = Problem.objects.get(url=prob)
-    alg = Algorithm.objects.get(url=alg)
-
-    solution = solve(prob, alg)
-
-    extra_context = {
-        'problem'  : prob,
-        'algorithm': alg,
-        'solution' : solution,
-    }
-
-    return render_to_response("frontend/solution.html",
-                              extra_context,
-                              context_instance=RequestContext(request))
-
-
 
 ### AJAX ###
 @csrf_exempt
@@ -78,7 +61,7 @@ def solve(request, prob, alg):
     alg = Algorithm.objects.get(url=alg)
 
     inputs = Input.objects.filter(problem=prob)
-
+    finputs = FileInput.objects.filter(problem=prob)
         
 
     print "Inputs: %s" % str(inputs)
@@ -96,11 +79,44 @@ def solve(request, prob, alg):
             return HttpResponse("Error: Not enough variables provided!")
         args += [input.value]
 
-    command = "java -jar %s/backend.jar" % FRONTEND_ROOT
+    i = 0
+    for finput in finputs:
+        if i == 0:
+            n = 'req1.csv'
+        elif i == 1:
+            n = 'pref1.csv'
+        else:
+            return HttpResponse("Too many files.")
+        #file_with_quotes = os.path.join("media", finput.file.name)
+        file = os.path.join("media", n)
+        abs_url = os.path.join(FRONTEND_ROOT, "..", file)
+        abs_url_quotes = "\"" + abs_url + "\""
+        args += [abs_url_quotes]
+        i += 1
+
+    # get jar file
+    path = os.path.join(FRONTEND_ROOT, '..', 'media', 'jarfile')
+    print path
+    jarfile = os.popen("ls -1tr %s | tail -n 1" % path).read().replace('\n','').replace('\r','')
+    print jarfile
+
+    command = "java -jar " + os.path.join(FRONTEND_ROOT, '..', 'media', 'jarfile', jarfile)
     for arg in args:
         command += " " + str(arg)
 
     # run Java backend
+    print command
     response = os.popen(command)
 
     return HttpResponse(response)
+
+@csrf_exempt
+def update_file_input(request, file_input_id):
+    file_input = FileInput.objects.get(id=file_input_id)
+
+    print request.GET['fname']
+
+    file_input.file = "uploads/" + request.GET['fname']
+    file_input.save()
+
+    return HttpResponse("success")
