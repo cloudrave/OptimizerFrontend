@@ -43,6 +43,7 @@
       }
     });
 
+    cuteSolPhrases = ['Solution!', 'Bam!', 'Sweet!', 'Rock that solution!']
 
     // click done
     $('#done').click(function(e) {
@@ -64,6 +65,7 @@
 
         $("#thinking").fadeIn();
 
+
         var inputs = new Array();
         $('.entry-panel input').each(function() {
             var $input = $(this);
@@ -81,6 +83,7 @@
             $('#solution').fadeIn();
             $('#solution-text').text(data);
             $("#thinking").fadeOut();
+            $("#cute-solution-phrase").text(getRand(cuteSolPhrases));
         }).error(function() {
             $("#thinking").fadeOut();
         });
@@ -178,9 +181,9 @@ $(function(){
     </div>
 
     <div id='solution' class='well' style='display:none'>
-        <div><h3>Solution! <span id='cute-solution-phrase'></span></h3></div>
+        <div><h3><span id='cute-solution-phrase'>Solution!</span></h3></div>
       <div>
-        <span style='font-size:1.3em;' id='solution-text'></span><div style='float:right; font-size:1.4em;'>+32 points!</div>
+        <span style='font-size:1.3em;' id='solution-text'></span>
       </div>
       <div style='margin-top:20px; text-align:center;'>
         <a href='/' class='btn btn-primary'>Try a different problem!</a>
