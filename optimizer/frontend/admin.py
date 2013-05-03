@@ -8,9 +8,15 @@ class InputInline(admin.StackedInline):
     model = Input
     fields = ('name', 'order', 'description')
 
+class FileInputInline(admin.StackedInline):
+    model = FileInput
+    fields = ('name', 'order', 'description')
+
 class ProblemAdmin(admin.ModelAdmin):
+    model = Problem
     inlines = [
         InputInline,
+        FileInputInline,
     ]
 
 admin.site.register(Problem, ProblemAdmin)

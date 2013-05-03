@@ -1,5 +1,11 @@
 from django.db import models
 
+class JarFile(models.Model):
+    file = models.FileField(upload_to='backend.jar')
+
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
 class Problem(models.Model):
     name = models.CharField(max_length=45)
     description = models.TextField(blank=True)
@@ -24,9 +30,24 @@ class Input(models.Model):
     description = models.TextField(blank=True)
     problem = models.ForeignKey(Problem)
 
-    order = models.IntegerField(help_text="This specifies the order in which the argument should be inputted into the Java backend.")
+    order = models.IntegerField(help_text="This specifies the order in which the argument should be inputted into the Java backend. MAKE SURE THIS IS UNIQUE FROM OTHER INPUTS AND MATCHES FOR USE WITH THE JAR FILE.")
 
     value = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        ordering = ("order",)
+
+    def __unicode__(self):
+        return "%s" % self.name
+
+class FileInput(models.Model):
+    name = models.CharField(max_length=25)
+    description = models.TextField(blank=True)
+    problem = models.ForeignKey(Problem)
+
+    order = models.IntegerField(help_text="This specifies the order in which the argument should be inputted into the Java backend. MAKE SURE THIS IS UNIQUE FROM OTHER INPUTS AND MATCHES FOR USE WITH THE JAR FILE.")
+
+    file = models.FileField(upload_to='inputs/%Y/%m/%d')
 
     class Meta:
         ordering = ("order",)
