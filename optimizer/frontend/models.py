@@ -14,6 +14,8 @@ class Problem(models.Model):
 
     key = models.IntegerField(help_text="Use this field to enter the Java commandline numerical choice for this problem.")
 
+    functional_algorithms = models.ManyToManyField("Algorithm")
+
     image = models.FileField(upload_to='problemImg/%Y/%m/%d')
 
     date_created = models.DateTimeField(auto_now_add=True)

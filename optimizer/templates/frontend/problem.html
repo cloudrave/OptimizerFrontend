@@ -175,10 +175,7 @@ $(function(){
     </div>
     <div class='btn-group algs' data-toggle="buttons-radio">
         {% for alg in algorithms %}
-            {% if problem.key == 5 and alg.key == 2 or problem.key == 2 and alg.key == 2 %}
-            {% else %}
-                <button class='btn' name="{{alg.url}}">{{alg.name}}</button>
-            {% endif %}
+            <button class='btn' name="{{alg.url}}">{{alg.name}}</button>
         {% endfor %}
     </div>
 

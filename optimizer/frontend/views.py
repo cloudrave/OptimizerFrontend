@@ -38,7 +38,7 @@ def display_problem_prompt(request, prob):
     inputs = Input.objects.filter(problem=prob)
     file_inputs = FileInput.objects.filter(problem=prob)
 
-    algs = Algorithm.objects.filter(is_visible=True)
+    algs = prob.functional_algorithms.filter(is_visible=True)
 
     extra_context = {
         'problem' : prob,

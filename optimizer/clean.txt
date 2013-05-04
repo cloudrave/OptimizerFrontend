@@ -1,4 +1,0 @@
-yes
-nick
-nick@nick.com
-
