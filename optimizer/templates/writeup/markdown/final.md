@@ -21,3 +21,5 @@ In addition, we built a website as the graphical user interface for our project.
 ## Planning
 
 Three weeks ago, we set out to write an optimization algorithm.  The end goal was to be able to handle real-world problems as complex as the nurse scheduling problem and still find an optimal solution.  That goal has been met.  **WOOT!**
+
+To see how our project played out in terms of planning, check out our documentation for [Checkpoint 1]({{STATIC_URL}}doc/checkpoint1.pdf) and [Checkpoint 2]({{STATIC_URL}}doc/checkpoint2.pdf).
