@@ -1,6 +1,7 @@
 .entry-panel {
     padding-top:30px;
     position: relative;
+    padding-bottom: 50px;
 }
 
 .entry-panel .instructions {

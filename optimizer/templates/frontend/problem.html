@@ -148,15 +148,12 @@ $(function(){
 
 <div class='row'>
   <div class='span5 entry-panel'>
+      <div style='overflow:auto; height:400px; border:1px solid black; border-radius:3px;'>
       <div class='well instructions'>{{ problem.description}}</div>
-    <!--<div class='span4 offset1 my-progress' id='progress' style="position:relative; top:18px;">
-      <div id="progress-outer">
-        <div id="progress-inner"><span id='number'>10%</span></div>
-      </div>
-    </div>-->
 
     <div class='' style='font-weight:bold;text-align:center; margin-bottom:5px;'>
         Please provide the specifics of your problem.
+        <br />Starred (*) inputs are required.
     </div>
 
     {% for input in inputs %}
@@ -164,11 +161,12 @@ $(function(){
     {% endfor %}
 
     {% if problem.key == 5 %}
-        Shift Requirements:
+        Modify shift Requirements:
         <div id='file-uploader1'></div>
-        Employee Preferences:
+        Modify employee Preferences:
         <div id='file-uploader2'></div>
     {% endif %}
+</div>
 
     <div class='' style='font-weight:bold;text-align:center; margin-bottom:5px;'>
         Which algorithm would you like to use?
@@ -178,8 +176,9 @@ $(function(){
             <button class='btn' name="{{alg.url}}">{{alg.name}}</button>
         {% endfor %}
     </div>
-
-    <div><button class='btn btn-success btn-block btn-large btn-done' role='button' id='done'>Optimize!</button></div>
+    <div><button class='btn btn-success btn-block btn-large btn-done' role='button' id='done'>
+            Optimize!
+    </button></div>
 
   </div>
   <div class='span7'>
