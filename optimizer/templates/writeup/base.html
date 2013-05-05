@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+
+<link rel="stylesheet" href="{{STATIC_URL}}css/writeup.css" type="text/css" media="screen" />
+
+
+{% endblock extra_head %}
+
+
+
+{% block body %}
+    <div class='row'>
+        <div class='span8 paper'>
+            {% block writeup %}{% endblock writeup %}
+        </div>
+    </div>
+{% endblock body %}

@@ -58,3 +58,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 
 }
 
+.qq-uploader {
+    margin-bottom:20px;
+}
+
+.qq-upload-button {
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+table {
+    width:100%;
+    text-align:center;
+}

@@ -1,0 +1,11 @@
+body {
+    background:#eee;
+}
+
+.paper {
+    background:#fff;
+    margin-top: 30px;
+    padding:15px 30px;
+    margin-left: 215px;
+    border-radius:8px;
+}
