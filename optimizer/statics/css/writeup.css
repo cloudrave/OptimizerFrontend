@@ -1,11 +1,27 @@
 body {
     background:#eee;
+
+    font-size:15px;
+    text-align:justify;
 }
 
 .paper {
     background:#fff;
-    margin-top: 30px;
-    padding:15px 30px;
-    margin-left: 215px;
+    margin-top:35px;
+    margin-bottom:45px;
+    padding:15px 70px;
+    margin-left: 190px;
     border-radius:8px;
 }
+
+h2 {
+    margin-top: 40px;
+}
+
+.paper .video {
+    width:100%;
+    text-align:center;
+    margin:40px 0;
+}
+
+
