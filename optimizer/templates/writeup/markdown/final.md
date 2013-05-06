@@ -20,15 +20,15 @@ In addition, we built a website as the graphical user interface for our project.
 
 ## Planning
 
-Three weeks ago, we set out to write an optimization algorithm.  The end goal was to be able to handle real-world problems as complex as the nurse scheduling problem and still find an optimal solution.  That goal has been met.
+Three weeks ago, we set out to write an optimization algorithm.  The goal was to be able to solve real-world problems as complex as the nurse scheduling problem and find an optimal solution.  That goal has been met.
 
-To see how our project played out in terms of planning, check out our documentation for the [initial draft]({{STATIC_URL}}doc/draft_specification.pdf) and the [final draft]({{STATIC_URL}}doc/checkpoint2.pdf) of our technical specification.
+To see how our project played out in terms of planning, check out our documentation for the [initial draft]({{STATIC_URL}}doc/draft_specification.pdf) and the [final draft]({{STATIC_URL}}doc/checkpoint2.pdf) of our technical specification. These documents have been annotated with comments on which features have been implemented. We can see that for the most part, we stayed very close to our original goals, which include optimization of an objective function using Cuckoo Search, providing a set of optimized solutions, and appropriate interfacing of the problem in order to change which optimization algorithm is used.
 
-In previous specifications, core features included optimization of an objective function using Cuckoo Search, providing a set of optimized solutions, and appropriate interfacing of the problem in order to change which optimization algorithm is used.
+Some features that were not included are a visualization of the results due to time constraints as well as using Levy flights for the Cuckoo Search due to technical issues with incorporating separate libraries.
 
 Six objective functions have been included: the Fence Problem, the Michalewicz Problem, the Box Problem, the Egg Holder Function, the Rastrigin Function, and the Nurse Scheduling Problem.  The first two problems are univariate, the next two are bivariate, and the last two are multivariate.
 
-Cool extensions that have also been implemented include additional optimization algorithms.  In addition to the Cuckoo Search, there is also a Particle Swarm Optimization (PSO) algorithm as well as a hybrid of the two.  A friendly graphical user interface has also been added as a cool extension to allow for better user interactivity and ease of use.  This can be found at [http://optimizer.nickmerrill.me](http://optimizer.nickmerrill.me).
+Although we did not choose to implement modifications of the Cuckoo Search (including quantum-inspired CS, multi-object CS), we did implement two additional optimization algorithms and were able to compare the performances. This includes the Particle Swarm Optimization (PSO) algorithm as well as a hybrid of the two.  A friendly graphical user interface has also been added as a cool extension to allow for better user interactivity and ease of use.  This can be found at [http://optimizer.nickmerrill.me](http://optimizer.nickmerrill.me).
 
 ## Design and Implementation
 
