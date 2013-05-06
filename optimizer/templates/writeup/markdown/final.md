@@ -22,7 +22,7 @@ In addition, we built a website as the graphical user interface for our project.
 
 Three weeks ago, we set out to write an optimization algorithm.  The end goal was to be able to handle real-world problems as complex as the nurse scheduling problem and still find an optimal solution.  That goal has been met.  **WOOT!**
 
-To see how our project played out in terms of planning, check out our documentation for [Checkpoint 1]({{STATIC_URL}}doc/checkpoint1.pdf) and [Checkpoint 2]({{STATIC_URL}}doc/checkpoint2.pdf).
+To see how our project played out in terms of planning, check out our documentation for the [initial draft]({{STATIC_URL}}doc/draft_specification.pdf) and the [final draft]({{STATIC_URL}}doc/checkpoint2.pdf) of our technical specification.
 
 In previous specifications, core features included optimization of an objective function using Cuckoo Search, providing a set of optimized solutions, and appropriate interfacing of the problem in order to change which optimization algorithm is used.
 
@@ -31,6 +31,8 @@ Six objective functions have been included: the Fence Problem, the Michalewicz P
 Cool extensions that have also been implemented include additional optimization algorithms.  In addition to the Cuckoo Search, there is also a Particle Swarm Optimization (PSO) algorithm as well as a hybrid of the two.  A friendly graphical user interface has also been added as a cool extension to allow for better user interactivity and ease of use.  This can be found at [http://optimizer.nickmerrill.me](http://optimizer.nickmerrill.me).
 
 ## Design and Implementation
+
+Code: ([Backend](https://github.com/NicholasMerrill/Optimizer) | [Frontend](https://github.com/NicholasMerrill/OptimizerFrontend))
 
 Throughout the development of the project, the original design of the algorithms and solutions classes was altered to meet the needs of each class.  Specifically, changes to the abstraction of the classes were made.  However, this did not create any difficulties.
 
