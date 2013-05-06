@@ -41,13 +41,48 @@ Unfortunately, we did not get to implement fully everything we wanted. For examp
 ### Analysis
 
 **Experimental Procedures** 
-
 Three mathematical functions commonly used in literature as benchmarks for optimization algorithms were chosen in order to analyze the performance of our three algorithms, including convergence rate and precision. We used the Rastrigin Function, the Rosenbrock Function, and the Eggholder Function. Tests were run by first normalizing the number of iterations in each algorithm such that each algorithm would take approximately the same time for a given function, and then collecting data of the best fitness over the iterations. 200 data points were collected for each run, and 50 trials for each algorithm were averaged and analyzed.
 
 **Rastrigin Function:** This function is a fairly difficult problem due to its large search space and its large number of local minima which are regularly distributed. The plot to the right shows the function when n=2. Data was collected for n=10 over 3 seconds. As we can see in the graph below, the hybrid algorithm is very quick to converge to a good solution, but over a longer period of time the cuckoo search is able to find a better solution. The PSO performed the worst. The function is given below:
 
-f(x)=An+ ∑_(i=1)^n▒[ x_i^2-A cos⁡(2πx_i ) where A=10,x_i∈ [-5.12,5.12]
+f(x) = An + ∑_(i=1)^n▒[ x_i^2-A cos(2πx_i ) where A=10 , x_i ∈ [-5.12,5.12]
 
-Global minimum at x=0,f(x)=0
+Global minimum at x = 0,f(x) = 0
 
-[Image](
+![Image](../)  ![Image](../)  ![Image](../)
+
+**Rosenbrock’s Valley:** This function is a classic optimization problem, also known as the banana function or the second function of De Jong. We can see in the plot for the function in 2 dimensions that the global minimum lies inside a long, narrow, flat valley. Although finding the valley is trivial, convergence to the global optimum is very difficult to the large search space. In order to gather meaningful data, we restricted the number of dimensions (n) to 2, and the search space to [-104, 104]. The function is defined as below:
+
+f(x)=∑_(i=1)^(N-1)▒〖[(1-x_i )^2+100(x_(i+1)-〖x_i〗^2 )^2 ]  ∀x∈R^N 〗
+
+![Image](../)  ![Image](../)  ![Image](../)
+
+Note that the above data is plotted on a logarithmic scale, so CS performs very poorly in comparison to the other 2 algorithms, and levels off well before reaching the minimum value. This can likely be attributed to the random nature of CS’s local and global search which does not allow it to easily find better solutions inside the valley. PSO and the hybrid algorithm performed very similarly, with the PSO finding a slightly better solution towards the end. This further supports the conjecture that the random solutions and random walk do not contribute to finding the global minimum and that the swarm nature of the two algorithms allow them to move towards a better local minimum.
+
+**Eggholder Function:** This test function also contains numerous local minima, although both algorithms fared fairly well. Because both algorithms converged so quickly, data was only collected over half a second, which may place a greater emphasis on the overhead of setting up the initial population. We can see in the plot below that PSO and the hybrid converge very quickly to the global minimum. While CS takes slightly longer, it does reach the global minimum as well over a greater number of iterations (not shown in the graph).
+
+f(x,y)= -(y+47)sin⁡(√(|y+x/2+47| ))-x sin⁡(√(|x-(y+47)| ))
+
+Minimum at (x,y) = (512,404.2319)= -959.6407 for -512 ≤ x,y ≤ 512
+
+![Image](../)  ![Image](../)  ![Image](../)
+
+## Reflection
+
+We are very happy with the success of our project. 
+
+Throughout the past few weeks, there was some concern that the nurse scheduling problem might not be very generalizable.  But after lots of reworking of the problem, it can be customized in a myriad of ways, allowing it to be useful for more than just a hospital.  Additionally, we had trouble making this problem compatible with our algorithms due to the discrete nature of the solutions for the problem. This was resolved by still using continuous variables, but rounding when determining the fitness and constraints.
+
+Had there been more time, we would have liked to add another complicated, real-world problem.  For example, the Travelling Salesman Problem is a very well-known and interesting problem, so we may choose to pursue this later to see how our algorithms fair on this problem.  Other smaller features such as a graphic visualization of the solution would have also been nice.
+
+**If we were to redo this project from scratch, we would perhaps add some more abstraction between the algorithms, problems, and the solution representations and enforce these abstractions in order to allow the design of these components to be much more independent. Although it would likely be at the cost of computational speed (on top of the abstraction we already have), we had run into problems at one point of side-effects in the solutions class interfering with the algorithm design. Additionally, not only would this allow for much quicker implementation of algorithms to compare against even more algorithms, but it would reduce the issue we have right now of certain algorithms (PSO and hybrid) not completely working with certain problems.**
+
+## Advice for Future Students
+
+Do not hesitate to tackle something that seems really hard!  Even though it may be a challenge, it is very rewarding to watch your work solve the problems of the world.
+
+**OTHER**
+
+
+
+## References
