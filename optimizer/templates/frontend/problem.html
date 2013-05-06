@@ -12,7 +12,6 @@
   function resetForm() {
     $('div.field input').val('');
     hideFields();
-    // TODO: show new image
   }
 
   function getRand(arr) {
@@ -159,13 +158,14 @@ $(function(){
     {% for input in inputs %}
         {% include "frontend/entry_field.html" with name=input.name filler=input.name id=input.order %}
     {% endfor %}
-
+    <!--
     {% if problem.key == 5 %}
         Modify shift Requirements:
         <div id='file-uploader1'></div>
         Modify employee Preferences:
         <div id='file-uploader2'></div>
     {% endif %}
+    -->
 </div>
 
     <div class='' style='font-weight:bold;text-align:center; margin-bottom:5px;'>
