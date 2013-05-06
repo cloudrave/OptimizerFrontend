@@ -51,13 +51,13 @@ f(x) = An + ∑_(i=1)^n▒[ x_i^2-A cos(2πx_i ) where A=10 , x_i ∈ [-5.12,5.1
 
 Global minimum at x = 0,f(x) = 0
 
-![Image](../)  ![Image](../)  ![Image](../)
+![Image](../rastrigin.jpg)  ![Image](../rastgraph.png)  ![Image](../rasttable.png)
 
 **Rosenbrock’s Valley:** This function is a classic optimization problem, also known as the banana function or the second function of De Jong. We can see in the plot for the function in 2 dimensions that the global minimum lies inside a long, narrow, flat valley. Although finding the valley is trivial, convergence to the global optimum is very difficult to the large search space. In order to gather meaningful data, we restricted the number of dimensions (n) to 2, and the search space to [-104, 104]. The function is defined as below:
 
 f(x)=∑_(i=1)^(N-1)▒〖[(1-x_i )^2+100(x_(i+1)-〖x_i〗^2 )^2 ]  ∀x∈R^N 〗
 
-![Image](../)  ![Image](../)  ![Image](../)
+![Image](../rosenbrock.png)  ![Image](../rosengraph.png)  ![Image](../rosentable.png)
 
 Note that the above data is plotted on a logarithmic scale, so CS performs very poorly in comparison to the other 2 algorithms, and levels off well before reaching the minimum value. This can likely be attributed to the random nature of CS’s local and global search which does not allow it to easily find better solutions inside the valley. PSO and the hybrid algorithm performed very similarly, with the PSO finding a slightly better solution towards the end. This further supports the conjecture that the random solutions and random walk do not contribute to finding the global minimum and that the swarm nature of the two algorithms allow them to move towards a better local minimum.
 
@@ -67,7 +67,7 @@ f(x,y)= -(y+47)sin⁡(√(|y+x/2+47| ))-x sin⁡(√(|x-(y+47)| ))
 
 Minimum at (x,y) = (512,404.2319)= -959.6407 for -512 ≤ x,y ≤ 512
 
-![Image](../)  ![Image](../)  ![Image](../)
+![Image](../eggholder.jpg)  ![Image](../egggraph.png)  ![Image](../eggtable.png)
 
 ## Reflection
 
