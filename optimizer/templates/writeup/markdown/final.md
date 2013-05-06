@@ -40,6 +40,10 @@ The separation and abstraction of the problems versus the algorithms made it ver
 
 Unfortunately, we did not get to implement fully everything we wanted. For example, although Cuckoo Search works well on all of the problems, PSO and the hybrid do not always reach the correct answer on problems with multivariable constraints (i.e. ax + by < c). While they do reach an answer, it is not accurate enough to say that these work without bugs.
 
+**Contributions of Members**
+
+Naturally, all three of us needed to collaborate initially to choose algorithms, problems, and our approach, including language, features, and abstraction details. The abstraction allowed us to work relatively independently on separate aspects of the project without constantly interfering with each other's parts. Nick designed a lot of the abstraction inside the Solution and SolutionSet classes while Crystal implemented the specific details of the respective sub-classes. Additionally, Crystal designed the Nurse Scheduling Problem implementation to make sure it was compatible with the other parts of our project. Sam was responsible for implementing, testing, and analyzing most the algorithms. Nick also contributed significantly to setting up and maintaining the front-end website and terminal user interface.
+
 ### Analysis
 
 **Experimental Procedures** 
