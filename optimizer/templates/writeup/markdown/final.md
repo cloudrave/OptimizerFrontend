@@ -20,7 +20,7 @@ In addition, we built a website as the graphical user interface for our project.
 
 ## Planning
 
-Three weeks ago, we set out to write an optimization algorithm.  The end goal was to be able to handle real-world problems as complex as the nurse scheduling problem and still find an optimal solution.  That goal has been met.  **WOOT!**
+Three weeks ago, we set out to write an optimization algorithm.  The end goal was to be able to handle real-world problems as complex as the nurse scheduling problem and still find an optimal solution.  That goal has been met.
 
 To see how our project played out in terms of planning, check out our documentation for the [initial draft]({{STATIC_URL}}doc/draft_specification.pdf) and the [final draft]({{STATIC_URL}}doc/checkpoint2.pdf) of our technical specification.
 
@@ -108,7 +108,6 @@ Overall, this project was a great experience for all of us to work collaborative
 ## Advice for Future Students
 
 Do not hesitate to tackle something that seems really hard!  Even though it may be a challenge, it is very rewarding to watch your work solve the problems of the world.
-
 
 
 ## References
