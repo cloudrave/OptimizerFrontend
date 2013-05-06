@@ -20,7 +20,7 @@ In addition, we built a website as the graphical user interface for our project.
 
 ## Planning
 
-Three weeks ago, we set out to write an optimization algorithm.  The end goal was to be able to handle real-world problems as complex as the nurse scheduling problem and still find an optimal solution.  That goal has been met.  **WOOT!**
+Three weeks ago, we set out to write an optimization algorithm.  The end goal was to be able to handle real-world problems as complex as the nurse scheduling problem and still find an optimal solution.  That goal has been met.
 
 To see how our project played out in terms of planning, check out our documentation for the [initial draft]({{STATIC_URL}}doc/draft_specification.pdf) and the [final draft]({{STATIC_URL}}doc/checkpoint2.pdf) of our technical specification.
 
@@ -38,24 +38,26 @@ Throughout the development of the project, the original design of the algorithms
 
 Since there are numerous parameters in each of the algorithms, parameter selection can significantly effect the algorithms' performance. For Cuckoo Search, we decided to follow many parameters used by the original author since these seemed to have the best results, confirmed by consequent studies [1]. This includes having 15 nests and setting p_a=0.25 (the percentage abandoned in each generation). There is a lot of ongoing research in the parameter selection for PSO, and for which situations certain parameters are appropriate. We decided to go with having 50 particles per generation, and setting w=0.7 (the weight particle's momentum, influenced by its previous velocity), and phi_p,phi_g=1.5, both of which are weights given to velocity influenced by the local and global best solutions [3][4].
 
-The separation and abstraction of the problems versus the algorithms made it very easy to add new problems. The abstract OptimizationProblem takes care of a lot of details related to variable constraints and interfacing with the algorithms and front-end. Implementing sub-classes only involves specifying these constraints and the fitness functions for the algorithm, and print functions for the front-end. For example, implementing the new test functions such as RastriginMinProb or EggholderFuncProb only took at most 10 minutes each to write.
+The separation and abstraction of the problems versus the algorithms made it very easy to add new problems. The abstract OptimizationProblem takes care of a lot of details related to variable constraints and interfacing with the algorithms and front-end. Implementing sub-classes only involves specifying these constraints and the fitness functions for the algorithm, and print functions for the front-end. For example, implementing the new test functions such as [RastriginMinProb](https://github.com/NicholasMerrill/Optimizer/blob/master/src/problems/RastriginMinProb.java) or [EggholderFuncProb](https://github.com/NicholasMerrill/Optimizer/blob/master/src/problems/EggholderFuncProb.java) only took at most 10 minutes each to write.
 
 Unfortunately, we did not get to implement fully everything we wanted. For example, although Cuckoo Search works well on all of the problems, PSO and the hybrid do not always reach the correct answer on problems with multivariable constraints (i.e. ax + by < c). While they do reach an answer, it is not accurate enough to say that these work without bugs.
 
 **Contributions of Members**
 
-Naturally, all three of us needed to collaborate initially to choose algorithms, problems, and our approach, including language, features, and abstraction details. The abstraction allowed us to work relatively independently on separate aspects of the project without constantly interfering with each other's parts. Nick designed a lot of the abstraction inside the Solution and SolutionSet classes while Crystal implemented the specific details of the respective sub-classes. Additionally, Crystal designed the implementations of several problems including the Nurse Scheduling Problem to make sure it was compatible with the other parts of our project. Sam was responsible for implementing, testing, and analyzing most the algorithms. Nick also contributed significantly to setting up and maintaining the front-end website and terminal user interface.
+Naturally, all three of us needed to collaborate initially to choose algorithms, problems, and our approach, including language, features, and abstraction details. The abstraction allowed us to work relatively independently on separate aspects of the project without constantly interfering with each other's parts. Nick designed a lot of the abstraction inside the Solution and SolutionSet classes while Crystal implemented the specific details of the respective sub-classes. Additionally, Crystal designed the implementations of several problems including the [Nurse Scheduling Problem](https://github.com/NicholasMerrill/Optimizer/blob/master/src/problems/NurseSchedProb.java) to make sure it was compatible with the other parts of our project. Sam was responsible for implementing, testing, and analyzing most the algorithms. Nick also contributed significantly to setting up and maintaining the front-end website and terminal user interface.
 
 ### Analysis
 
-**Experimental Procedures** 
+<h4>Experimental Procedures</h4>
+
 Three mathematical functions commonly used in literature as benchmarks for optimization algorithms were chosen in order to analyze the performance of our three algorithms, including convergence rate and precision [5]. We used the Rastrigin Function, the Rosenbrock Function, and the Eggholder Function. Tests were run by first normalizing the number of iterations in each algorithm such that each algorithm would take approximately the same time for a given function, and then collecting data of the best fitness over the iterations. 200 data points were collected for each run, and 50 trials for each algorithm were averaged and analyzed.
 
 **Rastrigin Function:** This function is a fairly difficult problem due to its large search space and its large number of local minima which are regularly distributed. The plot to the right shows the function when n=2. Data was collected for n=10 over 3 seconds. As we can see in the graph below, the hybrid algorithm is very quick to converge to a good solution, but over a longer period of time the cuckoo search is able to find a better solution. The PSO performed the worst. The function is given below:
 
-f(x) = An + ∑_(i=1)^n▒[ x_i^2-A cos(2πx_i ) where A=10 , x_i ∈ [-5.12,5.12]
-
-Global minimum at x = 0,f(x) = 0
+<div class='equation'>
+    <img src="{{STATIC_URL}}img/rastequation.png" />
+    <img style='margin-left:40px;' src="{{STATIC_URL}}img/rastequation2.png" />
+</div>
 
 <div class="images2">
     <img src="{{STATIC_URL}}img/rastrigin.jpg" />
@@ -67,7 +69,12 @@ Global minimum at x = 0,f(x) = 0
 
 **Rosenbrock’s Valley:** This function is a classic optimization problem, also known as the banana function or the second function of De Jong. We can see in the plot for the function in 2 dimensions that the global minimum lies inside a long, narrow, flat valley. Although finding the valley is trivial, convergence to the global optimum is very difficult to the large search space. In order to gather meaningful data, we restricted the number of dimensions (n) to 2, and the search space to [-104, 104]. The function is defined as below:
 
-f(x)=∑_(i=1)^(N-1)▒〖[(1-x_i )^2+100(x_(i+1)-〖x_i〗^2 )^2 ]  ∀x∈R^N 〗
+<div class='equation'>
+    <img src="{{STATIC_URL}}img/rosenequation.png" />
+</div>
+<div class='equation'>
+    <img src="{{STATIC_URL}}img/rosenequation2.png" width="400px" />
+</div>
 
 <div class="images2">
     <img src="{{STATIC_URL}}img/rosenbrock.png" />
@@ -81,9 +88,11 @@ Note that the above data is plotted on a logarithmic scale, so CS performs very 
 
 **Eggholder Function:** This test function also contains numerous local minima, although both algorithms fared fairly well. Because both algorithms converged so quickly, data was only collected over half a second, which may place a greater emphasis on the overhead of setting up the initial population. We can see in the plot below that PSO and the hybrid converge very quickly to the global minimum. While CS takes slightly longer, it does reach the global minimum as well over a greater number of iterations (not shown in the graph).
 
-f(x,y)= -(y+47)sin⁡(√(|y+x/2+47| ))-x sin⁡(√(|x-(y+47)| ))
+<div class="equation">
+    <img src="{{STATIC_URL}}img/eggequation.png" /><br />
+    Minimum at (x,y) = (512,404.2319)= -959.6407 for -512 ≤ x,y ≤ 512
+</div>
 
-Minimum at (x,y) = (512,404.2319)= -959.6407 for -512 ≤ x,y ≤ 512
 
 <div class="images2">
     <img src="{{STATIC_URL}}img/eggholder.jpg" alt="Eggholder Function" />
