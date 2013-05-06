@@ -29,3 +29,25 @@ In previous specifications, core features included optimization of an objective 
 Six objective functions have been included: the Fence Problem, the Michalewicz Problem, the Box Problem, the Egg Holder Function, the Rastrigin Function, and the Nurse Scheduling Problem.  The first two problems are univariate, the next two are bivariate, and the last two are multivariate.
 
 Cool extensions that have also been implemented include additional optimization algorithms.  In addition to the Cuckoo Search, there is also a Particle Swarm Optimization (PSO) algorithm as well as a hybrid of the two.  A friendly graphical user interface has also been added as a cool extension to allow for better user interactivity and ease of use.  This can be found at [http://optimizer.nickmerrill.me](http://optimizer.nickmerrill.me).
+
+## Design and Implementation
+
+Throughout the development of the project, the original design of the algorithms and solutions classes was altered to meet the needs of each class.  Specifically, changes to the abstraction of the classes were made.  However, this did not create any difficulties.
+
+The separation and abstraction of the problems versus the algorithms made it very easy to add new problems. The abstract OptimizationProblem takes care of a lot of details related to variable constraints and interfacing with the algorithms and front-end. Implementing sub-classes only involves specifying these constraints and the fitness functions for the algorithm, and print functions for the front-end. For example, implementing the new test functions such as RastriginMinProb or EggholderFuncProb only took at most 10 minutes each to write.
+
+Unfortunately, we did not get to implement fully everything we wanted. For example, although Cuckoo Search works well on all of the problems, PSO and the hybrid do not always reach the correct answer on problems with multivariable constraints (i.e. ax + by < c). While they do reach an answer, it is not accurate enough to say that these work without bugs.
+
+### Analysis
+
+**Experimental Procedures** 
+
+Three mathematical functions commonly used in literature as benchmarks for optimization algorithms were chosen in order to analyze the performance of our three algorithms, including convergence rate and precision. We used the Rastrigin Function, the Rosenbrock Function, and the Eggholder Function. Tests were run by first normalizing the number of iterations in each algorithm such that each algorithm would take approximately the same time for a given function, and then collecting data of the best fitness over the iterations. 200 data points were collected for each run, and 50 trials for each algorithm were averaged and analyzed.
+
+**Rastrigin Function:** This function is a fairly difficult problem due to its large search space and its large number of local minima which are regularly distributed. The plot to the right shows the function when n=2. Data was collected for n=10 over 3 seconds. As we can see in the graph below, the hybrid algorithm is very quick to converge to a good solution, but over a longer period of time the cuckoo search is able to find a better solution. The PSO performed the worst. The function is given below:
+
+f(x)=An+ ∑_(i=1)^n▒[ x_i^2-A cos⁡(2πx_i ) where A=10,x_i∈ [-5.12,5.12]
+
+Global minimum at x=0,f(x)=0
+
+[Image](
