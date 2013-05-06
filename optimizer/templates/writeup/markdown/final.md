@@ -73,7 +73,7 @@ Three mathematical functions commonly used in literature as benchmarks for optim
     <img src="{{STATIC_URL}}img/rosenequation.png" />
 </div>
 <div class='equation'>
-    <img src="{{STATIC_URL}}img/rosenequation2.png" width="400px" />
+    <img src="{{STATIC_URL}}img/rosenequation2.png" style="max-width:400px;" />
 </div>
 
 <div class="images2">
@@ -89,8 +89,10 @@ Note that the above data is plotted on a logarithmic scale, so CS performs very 
 **Eggholder Function:** This test function also contains numerous local minima, although both algorithms fared fairly well. Because both algorithms converged so quickly, data was only collected over half a second, which may place a greater emphasis on the overhead of setting up the initial population. We can see in the plot below that PSO and the hybrid converge very quickly to the global minimum. While CS takes slightly longer, it does reach the global minimum as well over a greater number of iterations (not shown in the graph).
 
 <div class="equation">
-    <img src="{{STATIC_URL}}img/eggequation.png" /><br />
-    Minimum at (x,y) = (512,404.2319)= -959.6407 for -512 ≤ x,y ≤ 512
+    <img src="{{STATIC_URL}}img/eggequation.png" />
+</div>
+<div class="equation">
+    <img src="{{STATIC_URL}}img/eggequation2.png" />
 </div>
 
 
