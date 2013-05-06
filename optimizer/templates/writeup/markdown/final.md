@@ -101,7 +101,9 @@ Throughout the past few weeks, there was some concern that the nurse scheduling 
 
 Had there been more time, we would have liked to add another complicated, real-world problem.  For example, the Travelling Salesman Problem is a very well-known and interesting problem, so we may choose to pursue this later to see how our algorithms fair on this problem.  Other smaller features such as a graphic visualization of the solution would have also been nice.
 
-**If we were to redo this project from scratch, we would perhaps add some more abstraction between the algorithms, problems, and the solution representations and enforce these abstractions in order to allow the design of these components to be much more independent. Although it would likely be at the cost of computational speed (on top of the abstraction we already have), we had run into problems at one point of side-effects in the solutions class interfering with the algorithm design. Additionally, not only would this allow for much quicker implementation of algorithms to compare against even more algorithms, but it would reduce the issue we have right now of certain algorithms (PSO and hybrid) not completely working with certain problems.**
+If we were to redo this project from scratch, we would perhaps add some more abstraction between the algorithms, problems, and the solution representations and enforce these abstractions in order to allow the design of these components to be much more independent. 
+
+Overall, this project was a great experience for all of us to work collaboratively in a relatively large group (versus working alone or with another partner for the p-sets) and have to work on a single project, designing everything from scratch. 
 
 ## Advice for Future Students
 
