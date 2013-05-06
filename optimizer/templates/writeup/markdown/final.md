@@ -119,7 +119,6 @@ Overall, this project was a great experience for all of us to work collaborative
 Do not hesitate to tackle something that seems really hard!  Even though it may be a challenge, it is very rewarding to watch your work solve the problems of the world.
 
 
-
 ## References
 1. Xin-She Yang; Deb, S., "Cuckoo Search via Lévy flights," Nature & Biologically Inspired Computing, 2009. NaBIC 2009. World Congress on , vol., no., pp.210,214, 9-11 Dec. 2009
 doi: 10.1109/NABIC.2009.5393690
