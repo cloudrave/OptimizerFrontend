@@ -5,7 +5,7 @@ urlpatterns = patterns('',
 
     ### WRITEUP ###
 
-    url(r'^final/$', TemplateView.as_view(template_name="writeup/final.html")),
+    url(r'^$', TemplateView.as_view(template_name="writeup/final.html")),
    
 
 )

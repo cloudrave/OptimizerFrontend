@@ -24,4 +24,22 @@ h2 {
     margin:40px 0;
 }
 
+.paper div.images1 {
+    max-width:100%;
+    margin:40px;
+    text-align:center;
+}
+.paper div.images1 img {
+
+}
+
+.paper .images2 img {
+    width:45%;
+    margin:0 2%;    
+}
+
+.paper div.images3 img {
+    width:30%;
+    margin:0 1%;
+}
 
