@@ -103,13 +103,11 @@ Had there been more time, we would have liked to add another complicated, real-w
 
 If we were to redo this project from scratch, we would perhaps add some more abstraction between the algorithms, problems, and the solution representations and enforce these abstractions in order to allow the design of these components to be much more independent. 
 
-Overall, this project was a great experience for all of us to work collaboratively in a relatively large group (versus working alone or with another partner for the p-sets) and have to work on a single project, designing everything from scratch. 
+Overall, this project was a great experience for all of us to work collaboratively in a relatively large group on a single project (versus working alone or with another partner for the p-sets). It was also a good experience having to designing all the abstractions and interfaces from scratch rather than just implementing given functions in a p-set.
 
 ## Advice for Future Students
 
 Do not hesitate to tackle something that seems really hard!  Even though it may be a challenge, it is very rewarding to watch your work solve the problems of the world.
-
-**OTHER**
 
 
 
