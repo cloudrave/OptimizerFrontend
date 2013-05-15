@@ -112,6 +112,8 @@ def solve(request, prob, alg):
 
 @csrf_exempt
 def update_file_input(request, file_input_id):
+    return HttpResponse("failure: this feature is disabled because the Google crawler wasn't playing nice")
+
     file_input = FileInput.objects.get(id=file_input_id)
 
     print request.GET['fname']
